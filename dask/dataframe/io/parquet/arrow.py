@@ -165,7 +165,7 @@ def _write_partitioned(
     """
     fs.mkdirs(root_path, exist_ok=True)
 
-    df = table.to_pandas(ignore_metadata=True)
+    df = table.to_pandas(ignore_metadata=False)
     partition_keys = [df[col] for col in partition_cols]
     data_df = df.drop(partition_cols, axis="columns")
     data_cols = df.columns.drop(partition_cols)
@@ -517,7 +517,7 @@ class ArrowEngine(Engine):
             use_pandas_metadata=True,
             use_threads=False,
             **kwargs.get("read", {}),
-        ).to_pandas(categories=categories, use_threads=False, ignore_metadata=True)[
+        ).to_pandas(categories=categories, use_threads=False, ignore_metadata=False)[
             list(columns_and_parts)
         ]
 
