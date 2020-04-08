@@ -582,13 +582,13 @@ class ArrowEngine(Engine):
                     "Appended columns not the same.\n"
                     "Previous: {} | New: {}".format(names, list(df.columns))
                 )
-            elif (pd.Series(dtypes).loc[names] != df[names].dtypes).any():
-                # TODO Coerce values for compatible but different dtypes
-                raise ValueError(
-                    "Appended dtypes differ.\n{}".format(
-                        set(dtypes.items()) ^ set(df.dtypes.iteritems())
-                    )
-                )
+            # elif (pd.Series(dtypes).loc[names] != df[names].dtypes).any():
+            #     # TODO Coerce values for compatible but different dtypes
+            #     raise ValueError(
+            #         "Appended dtypes differ.\n{}".format(
+            #             set(dtypes.items()) ^ set(df.dtypes.iteritems())
+            #         )
+            #     )
             i_offset = len(dataset.pieces)
 
             if division_info["name"] not in names:
